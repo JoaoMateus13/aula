@@ -1,38 +1,37 @@
 package com.curso.aula.entities;
 
+import java.time.Instant;
+
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
 
-import java.time.Instant;
 
 @Entity
-@Table(name = "tb_order")
+@Table(name = "tb_payment")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class Payment {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //Salvo no horario UTC
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant moment;
-    private OrderStatus status;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private User client;
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
-    private Payment payment;
+    @OneToOne
+    @MapsId
+    private Order order;
 
 
 
+    
 }
