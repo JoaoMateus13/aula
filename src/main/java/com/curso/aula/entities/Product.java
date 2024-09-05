@@ -1,6 +1,7 @@
 package com.curso.aula.entities;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.*;
@@ -29,13 +30,18 @@ public class Product {
     private Double price;
     private String imgUrl;
 
+    @Getter
     @ManyToMany
     @JoinTable(name = "tb_product_category",
     joinColumns = @JoinColumn(name = "product_id"),
     inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
+    @Getter
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrdemItem> items = new HashSet<>();
 
-
-    
+    public List<Order> getOrders(){
+        return items.stream().map(x -> x.getOrder()).toList();
+    }
 }
