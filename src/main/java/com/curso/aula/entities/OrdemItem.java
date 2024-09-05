@@ -1,13 +1,25 @@
 package com.curso.aula.entities;
 
 
-
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+@Entity
+@Table(name = "tb_order_item")
 public class OrdemItem {
     
 
+    @EmbeddedId
     private OrdemItemPK id = new OrdemItemPK();
 
+    @Setter
+    @Getter
     private Integer quantity;
+
+    @Setter
+    @Getter
     private Double price;
 
     public OrdemItem() {
@@ -34,23 +46,6 @@ public class OrdemItem {
 
     public void setOrder(Order order) {
         id.setOrder(order);
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-
-    public Double setPrice(Double price) {
-        return this.price = price;
     }
 
 }

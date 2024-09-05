@@ -1,5 +1,6 @@
 package com.curso.aula.entities;
 
+import jakarta.persistence.ManyToOne;
 import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.Embeddable;
@@ -17,11 +18,11 @@ import lombok.Setter;
 public class OrdemItemPK {
 
 
-    @ManyToAny
+    @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @ManyToAny
+    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 }
