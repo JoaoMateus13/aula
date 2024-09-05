@@ -6,6 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Objects;
+
 @Entity
 @Table(name = "tb_order_item")
 public class OrdemItem {
@@ -48,4 +51,17 @@ public class OrdemItem {
         id.setOrder(order);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        OrdemItem ordemItem = (OrdemItem) o;
+        return Objects.equals(id, ordemItem.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
