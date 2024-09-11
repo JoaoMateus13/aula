@@ -61,7 +61,7 @@ public class ProductService {
             return new ProductDTO(entity);
         }
         catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException("Produto não encontradoo");
+            throw new ResourceNotFoundException("Produto não encontrado");
         }
     }
 
