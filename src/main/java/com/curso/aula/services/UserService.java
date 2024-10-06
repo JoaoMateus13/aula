@@ -1,15 +1,20 @@
 package com.curso.aula.services;
 
+import com.curso.aula.dto.UserDTO;
 import com.curso.aula.entities.Role;
 import com.curso.aula.entities.User;
 import com.curso.aula.repositories.UserRepository;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import projection.UserDetailsProjection;
 
 import java.util.List;
@@ -39,6 +44,31 @@ public class UserService implements UserDetailsService {
         }
 
         return user;
+    }
+
+
+    protected User authenticate() {
+
+        try {
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            Jwt jwtPrincipal = (Jwt) authentication.getPrincipal();
+            String username = jwtPrincipal.getClaim("username");
+
+            return userRepository.findByEmail(username).get();
+
+        }
+        catch (Exception e) {
+            throw new UsernameNotFoundException("Invalid Email");
+        }
+
+
+    }
+
+    @Transactional(readOnly = true)
+    public UserDTO getMeUser(){
+        User user = authenticate();
+        return new UserDTO(user);
     }
 
 }
