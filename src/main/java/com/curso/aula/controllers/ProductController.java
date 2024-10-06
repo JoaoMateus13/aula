@@ -2,6 +2,7 @@ package com.curso.aula.controllers;
 
 
 import com.curso.aula.dto.ProductDTO;
+import com.curso.aula.dto.ProductMinDTO;
 import com.curso.aula.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +34,12 @@ public class ProductController {
 
 
     @GetMapping
-    public ResponseEntity<Page<ProductDTO>> findAll(
+    public ResponseEntity<Page<ProductMinDTO>> findAll(
             @RequestParam(name="name", defaultValue = "") String name,
             Pageable pageable) {
 
 
-        Page<ProductDTO> dto = service.findByAll(name, pageable);
+        Page<ProductMinDTO> dto = service.findByAll(name, pageable);
 
         return ResponseEntity.ok(dto);
     }

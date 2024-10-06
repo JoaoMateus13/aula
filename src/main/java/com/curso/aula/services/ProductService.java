@@ -2,6 +2,7 @@ package com.curso.aula.services;
 
 
 import com.curso.aula.dto.ProductDTO;
+import com.curso.aula.dto.ProductMinDTO;
 import com.curso.aula.entities.Product;
 import com.curso.aula.repositories.ProductRepository;
 import com.curso.aula.services.exceptions.DatabaseException;
@@ -36,9 +37,9 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findByAll(String name, Pageable pageable) {
+    public Page<ProductMinDTO> findByAll(String name, Pageable pageable) {
         Page<Product> result = repository.searchByName(name ,pageable);
-        return result.map(x -> new ProductDTO(x));
+        return result.map(x -> new ProductMinDTO(x));
     }
 
     @Transactional
