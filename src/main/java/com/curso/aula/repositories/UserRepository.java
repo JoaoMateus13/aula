@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.curso.aula.entities.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import projection.UserDetailsProjection;
+import com.curso.aula.projection.UserDetailsProjection;
 
 import java.util.List;
 import java.util.Optional;

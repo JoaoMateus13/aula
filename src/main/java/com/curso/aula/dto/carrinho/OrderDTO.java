@@ -4,6 +4,7 @@ import com.curso.aula.entities.OrdemItem;
 import com.curso.aula.entities.Order;
 import com.curso.aula.entities.OrderStatus;
 import com.curso.aula.entities.Payment;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,8 @@ public class OrderDTO {
     private OrderStatus status;
     private ClientMinDTO client;
     private PaymentDTO payment;
+
+    @NotEmpty(message = "O pedido deve ter pelo menos um item")
     private List<OrdemItemDTO> items = new ArrayList<>();
 
     public OrderDTO(Order order) {

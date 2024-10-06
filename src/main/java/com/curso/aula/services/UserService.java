@@ -15,7 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import projection.UserDetailsProjection;
+import com.curso.aula.projection.UserDetailsProjection;
 
 import java.util.List;
 

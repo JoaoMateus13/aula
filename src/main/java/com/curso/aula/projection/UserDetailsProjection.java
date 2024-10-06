@@ -1,4 +1,4 @@
-package projection;
+package com.curso.aula.projection;
 
 public interface UserDetailsProjection {
 
