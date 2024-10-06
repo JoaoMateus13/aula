@@ -2,15 +2,10 @@ package com.curso.aula.entities;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Getter
 @Setter
@@ -29,7 +24,20 @@ public class User {
     private String phone;
     private LocalDate birthDate;
     private String password;
-    private String role;
+
+
+    @ManyToMany
+    @JoinTable(name = "tb_user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+
+    private Set<Role> roles = new HashSet<>();
+
+
+    public void addRole(Role role) {
+        roles.add(role);
+    }
+
 
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
