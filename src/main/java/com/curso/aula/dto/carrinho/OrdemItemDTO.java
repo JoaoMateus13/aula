@@ -15,12 +15,14 @@ public class OrdemItemDTO {
     private String name;
     private Double price;
     private Integer quantity;
+    private String url;
 
     public OrdemItemDTO(OrdemItem ordemItem) {
         this.productId = ordemItem.getProduct().getId();
         this.name = ordemItem.getProduct().getName();
         this.price = ordemItem.getPrice();
         this.quantity = ordemItem.getQuantity();
+        this.url = ordemItem.getProduct().getImgUrl();
     }
 
     public Double getSubTotal() {

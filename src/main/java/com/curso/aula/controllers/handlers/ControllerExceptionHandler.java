@@ -4,6 +4,7 @@ import ch.qos.logback.core.model.processor.ModelHandlerException;
 import com.curso.aula.dto.CustomError;
 import com.curso.aula.dto.ValidationError;
 import com.curso.aula.services.exceptions.DatabaseException;
+import com.curso.aula.services.exceptions.ForbiddenException;
 import com.curso.aula.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -42,5 +43,17 @@ public class ControllerExceptionHandler {
         }
         return ResponseEntity.status(status).body(error);
     }
+
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<CustomError> forbidden(ForbiddenException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.FORBIDDEN;
+        CustomError error = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(error);
+    }
+
+
+
+
 
 }

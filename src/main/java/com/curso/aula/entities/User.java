@@ -40,6 +40,10 @@ public class User implements UserDetails {
         roles.add(role);
     }
 
+    public Boolean hasRole(String role) {
+        return roles.contains(role);
+    }
+
 
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
