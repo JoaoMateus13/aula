@@ -4,19 +4,22 @@ import com.curso.aula.entities.Role;
 import com.curso.aula.entities.User;
 import com.curso.aula.repositories.UserRepository;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import projection.UserDetailsProjection;
 
 import java.util.List;
 
+@Service
 public class UserService implements UserDetailsService {
+
 
     @Autowired
     private UserRepository userRepository;
-
 
 
     @Override

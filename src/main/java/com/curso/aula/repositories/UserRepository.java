@@ -3,10 +3,12 @@ package com.curso.aula.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.curso.aula.entities.User;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 import projection.UserDetailsProjection;
 
 import java.util.List;
 
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(nativeQuery = true, value = "SELECT tb_user.email AS username, tb_user.password, tb_role.id AS roleId, tb_role.authority " +
