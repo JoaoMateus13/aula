@@ -1,8 +1,10 @@
 package com.curso.aula.services;
 
 
+import com.curso.aula.dto.CategoryDTO;
 import com.curso.aula.dto.ProductDTO;
 import com.curso.aula.dto.ProductMinDTO;
+import com.curso.aula.entities.Category;
 import com.curso.aula.entities.Product;
 import com.curso.aula.repositories.ProductRepository;
 import com.curso.aula.services.exceptions.DatabaseException;
@@ -84,6 +86,12 @@ public class ProductService {
         entity.setPrice(dto.getPrice());
         entity.setDescription(dto.getDescription());
         entity.setImgUrl(dto.getImgUrl());
+        entity.getCategories().clear();
+        for(CategoryDTO categoryDTO: dto.getCategories()) {
+            Category category = new Category();
+            category.setId(categoryDTO.getId());
+            entity.getCategories().add(category);
+        }
     }
 
 
