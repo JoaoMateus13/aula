@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://172.22.0.2:5432/aula
+    username: postgres
+    password: 1234567
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        jdbc:
+        lob:
+          non_contextual_creation: true
+
+      ddl-auto: none
+
+
+
+
