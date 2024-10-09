@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Ignorar diretório de dados do PostgreSQL
+.data
+
 ### STS ###
 .apt_generated
 .classpath
