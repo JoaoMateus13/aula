@@ -9,6 +9,11 @@ security:
   jwt:
     duration: ${JWT_DURATION:86400}
 
+logging:
+  level:
+    org:
+      springframework: INFO
+
 
 cors:
-  origins: ${CORS_ORIGINS:http://localhost:5173,http://localhost:3000}
+  origins: ${CORS_ORIGINS:http://localhost:5173,http://localhost:3000, http://localhost:8080}

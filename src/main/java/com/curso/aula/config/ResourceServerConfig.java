@@ -37,11 +37,34 @@ public class ResourceServerConfig {
 
 		http.securityMatcher(PathRequest.toH2Console()).csrf(csrf -> csrf.disable())
 				.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()));
+
 		return http.build();
 	}
 
 	@Bean
-	@Order(3)
+	@Profile("test")
+	@Order(2)
+	public SecurityFilterChain pgsecurityFilterChain(HttpSecurity http) throws Exception {
+		http
+				.csrf().disable()
+				.authorizeHttpRequests(authorizeRequests -> authorizeRequests
+						.requestMatchers("/login", "/register").permitAll()
+						.anyRequest().authenticated()
+				)
+				.formLogin()
+				.loginPage("/login") // A página de login personalizada
+				.permitAll()
+				.defaultSuccessUrl("/", true)
+				.failureUrl("/login?error=true") // Redireciona para login em caso de erro
+				.and()
+				.logout().permitAll();
+
+		return http.build();
+
+	}
+
+	@Bean
+	@Order(4)
 	public SecurityFilterChain rsSecurityFilterChain(HttpSecurity http) throws Exception {
 
 		http.csrf(csrf -> csrf.disable());

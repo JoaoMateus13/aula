@@ -63,7 +63,7 @@ public class AuthorizationServerConfig {
 	private UserDetailsService userDetailsService;
 
 	@Bean
-	@Order(2)
+	@Order(3)
 	public SecurityFilterChain asSecurityFilterChain(HttpSecurity http) throws Exception {
 
 		OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);

@@ -18,3 +18,10 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+logging:
+  level:
+    root: INFO
+    com.curso.aula: DEBUG  # Habilita DEBUG para suas classes
+  file:
+    name: logs/spring-boot-app.log
