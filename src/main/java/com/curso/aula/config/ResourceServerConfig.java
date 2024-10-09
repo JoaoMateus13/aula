@@ -51,8 +51,10 @@ public class ResourceServerConfig {
 		return http.build();
 	}
 
+
 	@Bean
 	public JwtAuthenticationConverter jwtAuthenticationConverter() {
+
 		JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
 		grantedAuthoritiesConverter.setAuthoritiesClaimName("authorities");
 		grantedAuthoritiesConverter.setAuthorityPrefix("");
